@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en-US" ng-app>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="fivefoldfunctions.js"></script>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+
+  <link href="jquery-ui-1.11.4.custom/jqueri.ui.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="standard.css">
+
+
+  <script>
+    var app = angular.module("myShoppingList"), []);
+    app.controller("myCtrl", function($scope){
+        $scope.products = ["Milk", "Bread", "Cheese"];
+    });
+  </script>
+
+</head>
+<body ng-controller="userController">
+<div class="tab">
+  <button class="tablinks" onclick="openTab(event, 'genStats')">General stats</button>
+  <button class="tablinks" onclick="openTab(event, 'registerNewBet')">Register new bet</button>
+  <button class="tablinks" onclick="openTab(event, 'liveBets')">Live bets</button>
+  <button class="tablinks" onclick="openTab(event, 'historyBets')">History</button>
+  <button class="tablinks" onclick="openTab(event, 'betting_advice')">Betting advice and rules</button>
+  <button class="tablinks" onclick="openTab(event, '14_fold')">14-fold madness</button>
+  <button class="tablinks" onclick="openTab(event, 'read_bets')">Read bets</button>
+  <button class="tablinks" onclick="openTab(event, 'testing')">Testing grounds</button>
+</div>
+
+<h1>Fivefold bets</h1>
+<a href="https://members.bet365.com/MEMBERS/Authenticated/History/Sports/?prdid=1&cnt=&rurl=www.bet365.com" target="_blank">konto</a>
+
+<div id="genStats" class="tabcontent">
+  <h3>General stats</h3>
+  <ol>
+    <li>Antall bets:</li>
+    <li>Resultat:</li>
+    <li>ROI %:</li>
+  </ol>
+
+  <table>
+    <thead>
+    <th></th>
+    <th>10</th>
+    <th>9</th>
+    <th>8</th>
+    <th>7</th>
+    <th>6</th>
+    <th>5</th>
+    <th>4</th>
+    <th>3</th>
+    <th>2</th>
+    <th>1</th>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+</div>
+
+<div id="registerNewBet" class="tabcontent">
+  <h3>Register new bet:</h3>
+  <p>Bet 1 :
+    <input type="text" placeholder="Team 1" ng-model="match1team1" ng-class="{'selected': match1check1.checked}">
+    -
+    <input type="text" placeholder="Team 2" ng-model="match1team2"/>
+    Odds : <input type="number" ng-model="odds1">
+  </p>
+  <p>Bet 2 :
+    <input type="text" placeholder="Team 3" ng-model="match2team1">
+    -
+    <input type="text" placeholder="Team 4" ng-model="match2team2"/>
+    Odds : <input type="number" ng-model="odds2">
+  </p>
+  <p>Bet 3 :
+    <input type="text" placeholder="Team 5" ng-model="match3team1"/>
+    -
+    <input type="text" placeholder="Team 6" ng-model="match3team2"/>
+    Odds : <input type="number" ng-model="odds2">
+  </p>
+  <p>Bet 4 :
+    <input type="text" placeholder="Team 7" ng-model="match4team1">
+    -
+    <input type="text" placeholder="Team 8" ng-model="match4team2"/>
+    Odds : <input type="number" ng-model="odds2">
+  </p>
+  <p>Bet 5 :
+    <input type="text" placeholder="Team 9" ng-model="match5team1">
+    -
+    <input type="text" placeholder="Team 10" ng-model="match5team2"/>
+    Odds : <input type="number" ng-model="odds2">
+  </p>
+  <h1>Hello {{match1team1}}  {{odds1 * odds2}}</h1>
+
+
+  <button class="btn btn-success" ng-click="addBet()">
+    <span class="glyphicon glyphicon-save"></span>Save Bet
+  </button>
+
+</div>
+
+
+<div id="historyBets" class="tabcontent">
+
+  <table class="table table-hover">
+    <thead>
+    <tr>
+      <th>Home Team Goal</th>
+      <th>Home Team</th>
+      <th>Away Team</th>
+      <th>Away Team Goal</th>
+      <th>Odds</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="table table-row success"  ng-repeat="bet in bets">
+      <td>{{match1team1}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div id="betting_advice" class="tabcontent">
+  <h3>General Betting advice</h3>
+  <p>
+  <ul>
+    <li>Never have same outcome over multiple bets</li>
+    <li>Don't chase</li>
+    <li>Look around for best odds</li>
+    <li>Don't follow other people's bets blindly</li>
+    <li>Don't bet your whole bank over a few days</li>
+  </ul>
+</div>
+
+<div id="14_fold" class="tabcontent">
+  <h3>14-fold madness</h3>
+
+  <p>
+    The idea is to take 14 matches with both teams to score, and see how many we can get
+    right. If the cashout is high enough, we go for it!
+  </p>
+
+  <table align="center">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Stake</th>
+      <th>Odds</th>
+      <th>Numbers right</th>
+      <th>Return</th>
+      <th>Cashout</th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>10</td>
+        <td>2394,1</td>
+        <td>22/28</td>
+        <td>0</td>
+        <td>-</td>
+      </tr>
+    <tr>
+      <td>2</td>
+      <td>10</td>
+      <td>5327,7</td>
+      <td>27/28</td>
+      <td>0</td>
+      <td>-</td>
+    </tr>
+
+    </tbody>
+  </table>
+</div>
+
+<div id="read_bets" class="tabcontent">
+  <button id="read_bet_button">Read bets from web</button>
+
+
+</div>
+
+<div id="testing" class="tabcontent">
+
+  <script>
+    var app = angular.module("myShoppingList"), []);
+    app.controller("myCtrl", function($scope){
+        $scope.products = ["Milk", "Bread", "Cheese"];
+    });
+  </script>
+
+  <div ng-app="myShoppingList" ng-controller="myCtrl">
+    <ul>
+      <li ng-repeat="x in products">
+        {{x}}
+      </li>
+    </ul>
+  </div>
+
+asdasdsa
+</div>
+
+
+
+<script>
+var app = angular.module("myShoppingList", []);
+app.controller("myCtrl", function($scope) {
+    $scope.products = ["Milk", "Bread", "Cheese"];
+    $scope.addItem = function () {
+        $scope.products.push($scope.addMe);
+    }
+});
+</script>
+
+<div ng-app="myShoppingList" ng-controller="myCtrl">
+  <ul>
+    <li ng-repeat="x in products">{{x}}</li>
+  </ul>
+  <input ng-model="addMe">
+  <button ng-click="addItem()">Add</button>
+</div>
+
+<p>Write in the input field to add items.</p>
+
+
+<div ng-app="" ng-init="firstName='sd'">
+
+  <p>The name is <span ng-bind="firstName"></span></p>
+
+</div>
+
+</body>
+</html>
